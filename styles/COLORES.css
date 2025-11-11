@@ -141,8 +141,16 @@
 }
 
 
-.st-cb{
-    border-color: #5B69ED;
+[class = "st-at st-au st-av st-aw st-ae st-ag st-ah st-af st-cr st-bp st-ai st-aj st-ak st-al st-am st-an st-ao st-ap st-cy st-ar st-as st-bc st-c9 st-ca st-cb st-cc st-b7 st-ba"]{
+    border-color: #5B69ED !important;
+}
+
+[class = "st-ae st-af st-ag st-ah st-ai st-aj st-ak st-al st-am st-an st-ao st-ap st-aq st-ar st-as st-at st-au st-av st-aw st-ax st-ay st-az st-b0 st-b1 st-b2 st-c9 st-ca st-cb st-cc st-b7 st-b8 st-b9 st-ba"]{
+    border-color: #5B69ED !important;
+}
+
+[class = "st-ae st-af st-ag st-ah st-ai st-aj st-ak st-al st-am st-an st-ao st-ap st-aq st-ar st-as st-at st-au st-av st-aw st-ax st-ay st-az st-b0 st-b1 st-b2 st-c9 st-ca st-cb st-cc st-b7 st-b8 st-bz st-ba"]{
+    border-color: #5B69ED !important;
 }
 
 .st-emotion-cache-1py5frv.focused{

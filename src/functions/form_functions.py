@@ -3,6 +3,9 @@ import pandas as pd
 import openpyxl as opxl
 import time
 from datetime import datetime
+import locale
+
+locale.setlocale(locale.LC_ALL, '')  # Usa configuración local del sistema
 
 RUTA_CSS = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\styles\COLORES.css"
 RUTA_IMAGE = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\Streamlit\images\GContraloria.jpeg"
@@ -21,9 +24,9 @@ CREDENCIALES = {
 
 AREAS = {
     "mcardona": "Admin",
-    "jorgeeh": "Analítica Contraloría",
+    "jorgeeh": "Analítica de Contraloría",
     "albertoc": "Control de Operaciones",
-    "oscardy": "Administrativo",
+    "oscardy": "Administrativa",
     "doragc": "Riesgos y Cumplimiento",
     "zrestrepo": "Impuestos",
     "anamr": "Contabilidad",

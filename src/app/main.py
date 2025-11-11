@@ -111,14 +111,16 @@ def mostrar_formulario():
         with col2:
             mes = st.selectbox(label="Mes:", options=["Seleccione una Opción..."]+MESES, placeholder="Seleccione una opción...")
             especificacion = st.selectbox(label="Especificación:", options=["Seleccione una Opción..."]+lista_especificaciones, placeholder="Seleccionar una opción...")
-            valor = st.number_input(label='Valor:', placeholder="Escribe un valor válido...")
+            valor = st.number_input(label='Valor:', placeholder="Escribe un valor válido...", step=1000.00)
+
+            valor_formateado = locale.format_string("%.2f", valor, grouping=True)
+            col01, col02 = st.columns([1,1])
+            with col01:
+                st.write(f'Guia del valor: ${valor_formateado}')
 
         st.divider()
-        enviar_form = st.button("Enviar Formulario", use_container_width=True)
-
-
-
-        if enviar_form:
+        
+        if st.button("Enviar Formulario", use_container_width=True):
             inputs = {año, mes, concepto, especificacion, ciudad}
             if "Seleccione una Opción..." in inputs:
                 st.warning("Por favor complete todos los campos obligatorios")
@@ -129,11 +131,31 @@ def mostrar_formulario():
                 with st.spinner("Enviando formulario..."):
                     progress_bar = st.progress(1)
                     for porcentaje in range(100):
-                        time.sleep(0.05)  # Simula el proceso
+                        time.sleep(0.17)  # Simula el proceso
                         progress_bar.progress(porcentaje + 1)
-
                 st.toast("Formulario enviado con éxito", icon="✅")
-                insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Analítica de Contraloría", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+                st.success('✅ Se envió el Formulario')
+                if st.session_state.usuario_actual == "jorgeeh":
+                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Analítica de Contraloría", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+
+                elif st.session_state.usuario_actual == "albertoc":
+                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Control de Operaciones", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+
+                elif st.session_state.usuario_actual == "oscardy":
+                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Administrativa", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+
+                elif st.session_state.usuario_actual == "doragc":
+                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Riesgos y Cumplimiento", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+
+                elif st.session_state.usuario_actual == "zrestrepo":
+                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Impuestos", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+
+                elif st.session_state.usuario_actual == "anamr":
+                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Contabilidad", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+                
+                else:
+                    print('Error')
+        
 
         if cerrar_sesion:
             st.session_state.autenticado = False
