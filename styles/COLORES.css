@@ -1,0 +1,162 @@
+.colorees{
+    color: #5B69ED;
+    color: #382C54;
+    color: #FF8901;
+    color: #6DC7CC;
+    color: #FD636B;
+    color: #C0EE5A;
+    color: #C6C6C6;
+    color: #ffffff;
+}
+
+/*BODY LOGIN*/
+#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-1w723zb.e4man114{
+    padding: 0vh 0vh 5vh 0vh !important;
+}
+
+/*BODY FORMULARIO*/
+#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.e4man114{
+    padding: 0vh 10vh 5vh 10vh;
+}
+
+/*IMAGEN*/
+#root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-1r1cntt.e6f82ta1 > div > div > div.stElementContainer.element-container.st-emotion-cache-13gev4o.e196pkbe0 > div > div > div.stImage.st-emotion-cache-1dvmtd8.e1mq0gaz0 > div > img{
+    height:100vh;
+    padding: 0vh 0vh 0vh 0vh;
+    margin: 0vh 0vh 0vh 2vh;
+}
+
+/*CONTENEDOR IMG*/
+#root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-1r1cntt.e6f82ta1 {
+    padding: 0%;
+    margin: 0%;
+}
+
+/*BTN MAX IMG*/
+#root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-1r1cntt.e6f82ta1 > div > div > div.stElementContainer.element-container.st-emotion-cache-13gev4o.e196pkbe0 > div > div > div.stElementToolbar.st-emotion-cache-iun7dp.ekeylwq0, #root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-10p9htt.e6f82ta4{
+    display: none;
+}
+
+/*SIDEBAR*/
+#root > div:nth-child(1) > div.withScreencast > div > div > section{
+    background-color: #5B69ED;
+    width: 39vh !important;
+}
+/*CONTENEDOR FLECHA SIDEBAR*/
+#root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-jik3eh.e6f82ta2 > div.st-emotion-cache-10p9htt.e6f82ta4{
+    display: none;
+}
+
+/*CONTENEDOR INPUTS LOGIN*/
+#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-1w723zb.e4man114 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div > div > div.stColumn.st-emotion-cache-1jnfx01.e196pkbe1 > div{
+    align-items: center;
+}
+
+/*COLUMNA CENTRAL IMPUTS*/
+#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-1w723zb.e4man114 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div > div > div.stColumn.st-emotion-cache-1jnfx01.e196pkbe1{
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px 100px 20px 100px;
+    border-radius: 20px;
+    align-items: center;
+}
+
+/*DIV GENERAL DEL FORM*/
+#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-1w723zb.e4man114 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div{
+    padding: 0vh 0vh 0vh 0vh;
+}
+
+/*DIV TITULO FORMULARIO*/
+[class="h2-form"]{
+    background-color: #5B69ED;
+    border-radius: 10px;
+    margin: 0vh 0vh 0vh 0vh;
+}
+
+/*DIV TITULO LOGIN*/
+[class="st-emotion-cache-ua1rfn et2rgd22"]{
+    background-color: #5B69ED;
+    color: #ffffff;
+    border-radius: 20px;
+    margin: 0vh 0vh 0vh 0vh;
+    align-items: center;
+}
+
+/*TITULO FORMULARIO*/
+.h2-form{
+    background-color: #5B69ED;
+    color: rgb(255, 255, 255);
+    align-items: center;
+}
+
+/*MENÚ CONFIG*/
+#root > div:nth-child(1) > div.withScreencast > div > div > div > header > div > div > div.st-emotion-cache-scp8yw.e3g0k5y6{
+    display: none;
+}
+
+/*MENÚ CONFIG PAG.*/
+#root > div:nth-child(1) > div.withScreencast > div > div > div > header{
+    background-color: transparent;
+    position: absolute;
+    z-index: 1;
+}
+
+/* BTNS ANTES HOVER */
+.stButton button {
+    background-color: white;
+    color: #5B69ED;
+    border-radius: 10px;
+    padding: 5px 20px;
+    border: none;
+    transition: all 0.5s;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
+    margin: 0vh 0vh 0vh 0vh;
+}
+
+/*BTN CERRAR SESIÓN*/
+#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.e4man114 > div > div:nth-child(2) > div > div > div > div.stColumn.st-emotion-cache-kt9vas.e196pkbe1 > div > div > div > button{    
+    position: absolute;
+    z-index: 2;
+    top: 3px;
+}
+
+/* BOTON CERRAR SESION DESPUES HOVER */
+#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.e4man114 > div > div:nth-child(2) > div > div > div > div.stColumn.st-emotion-cache-kt9vas.e196pkbe1 > div > div > div > button:hover{
+    color: white;
+    background-color: #FD636B;
+    box-shadow: 0px 7px 15px rgba(0, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+/*BTNS GENERALES DESPUES HOVER*/
+.stButton button:hover {
+    background-color: #5B69ED;
+    color: white;
+    box-shadow: 1px 8px 20px rgba(91, 105, 237, 1);
+    transform: translateY(-5px);
+}
+
+/* SVG DE ENLACE EN TITULOS */
+[data-testid="stHeaderActionElements"]{
+    display: none;
+}
+
+
+.st-cb{
+    border-color: #5B69ED;
+}
+
+.st-emotion-cache-1py5frv.focused{
+    border-color: #5B69ED;
+}
+
+/*SOMBRA ALERTA VERDE*/
+[data-baseweb="notification"]{
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+[class="st-ah st-cv"]{
+    background-color: transparent;
+}
+
+
