@@ -1,10 +1,11 @@
 import sys
-sys.path.append(r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\src\functions")
+
+sys.path.append(
+    r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\src\functions"
+)
 
 from form_functions import *
 from insert_registros import *
-
-
 
 # Inicializar session_state
 if "autenticado" not in st.session_state:
@@ -16,17 +17,14 @@ def mostrar_login():
     # Configuración de la página
     st.set_page_config(
         page_title="GCO | Inicio de Sesión",
-        page_icon= RUTA_ICON,
+        page_icon=RUTA_ICON,
         layout="centered",
         initial_sidebar_state="expanded",
     )
-
     div002 = st.container()
     with div002:
         pass
-
     container = st.container()
-
     with container:
         st.markdown(
             """
@@ -37,7 +35,6 @@ def mostrar_login():
             unsafe_allow_html=True,
         )
         st.divider()
-
         contenedor_inputs = st.container()
         with contenedor_inputs:
             col01, col02, col03 = st.columns([1, 5, 1])
@@ -47,7 +44,6 @@ def mostrar_login():
                     "Pin:", placeholder="Ej: 1234", type="password"
                 )
                 enviar = st.button("Iniciar Sesión")
-
             if enviar:
                 if not usuario or not contraseña:
                     st.warning("Campos obligatorios")
@@ -66,8 +62,9 @@ def mostrar_login():
 
 # Función del formulario
 def mostrar_formulario():
-    lista_especificaciones, lista_ciudades, lista_concepto_anterior = parametros(AREAS.get(st.session_state.usuario_actual))
-
+    lista_especificaciones, lista_ciudades, lista_concepto_anterior = parametros(
+        AREAS.get(st.session_state.usuario_actual)
+    )
     # Configuración de la página
     st.set_page_config(
         page_title="GCO | Formulario",
@@ -75,17 +72,18 @@ def mostrar_formulario():
         layout="wide",
         initial_sidebar_state="expanded",
     )
-
     containerp = st.container()
     with containerp:
         div1, div2 = st.columns([8, 2])
         with div1:
             # Mostrar usuario actual
-            st.success("_"*10 + f"Bienvenido/a, {st.session_state.nombre_usuario} ✌️" + "_"*10)
-        
+            st.success(
+                "_" * 10
+                + f"Bienvenido/a, {st.session_state.nombre_usuario} ✌️"
+                + "_" * 10
+            )
         with div2:
             cerrar_sesion = st.button("Cerrar Sesión", use_container_width=True)
-
     st.markdown(
         f"""
             <div class="h2-form" style='text-align: center; border-radius: 30px;'>
@@ -95,73 +93,97 @@ def mostrar_formulario():
         unsafe_allow_html=True,
     )
     st.divider()
-
     contenedor_form = st.container()
     with contenedor_form:
         col1, col2 = st.columns(2)
-
         with col1:
             año_actual = datetime.now().year
             años = [int(año_actual) - 1, int(año_actual), int(año_actual) + 1]
-
-            año = st.selectbox(label="Año:", options=["Seleccione una Opción..."]+años,placeholder="Seleccionar una opción...")            
-            concepto = st.selectbox(label="Concepto Anterior:", options=["Seleccione una Opción..."]+lista_concepto_anterior, placeholder="Seleccionar una opción...")
-            ciudad = st.selectbox(label="Ciudad:", options=["Seleccione una Opción..."]+lista_ciudades, placeholder="Seleccionar una opción...")
-
+            año = st.selectbox(
+                label="Año:",
+                options=["Seleccione una Opción..."] + años,
+                placeholder="Seleccionar una opción...",
+            )
+            concepto = st.selectbox(
+                label="Concepto Anterior:",
+                options=["Seleccione una Opción..."] + lista_concepto_anterior,
+                placeholder="Seleccionar una opción...",
+            )
+            ciudad = st.selectbox(
+                label="Ciudad:",
+                options=["Seleccione una Opción..."] + lista_ciudades,
+                placeholder="Seleccionar una opción...",
+            )
         with col2:
-            mes = st.selectbox(label="Mes:", options=["Seleccione una Opción..."]+MESES, placeholder="Seleccione una opción...")
-            especificacion = st.selectbox(label="Especificación:", options=["Seleccione una Opción..."]+lista_especificaciones, placeholder="Seleccionar una opción...")
-            valor = st.number_input(label='Valor:', placeholder="Escribe un valor válido...", step=1000.00)
-
-            valor_formateado = locale.format_string("%.2f", valor, grouping=True)
-            col01, col02 = st.columns([1,1])
+            mes = st.selectbox(
+                label="Mes:",
+                options=["Seleccione una Opción..."] + MESES,
+                placeholder="Seleccione una opción...",
+            )
+            especificacion = st.selectbox(
+                label="Especificación:",
+                options=["Seleccione una Opción..."] + lista_especificaciones,
+                placeholder="Seleccionar una opción...",
+            )
+            valor = st.number_input(
+                label="Valor:",
+                placeholder="Escribe un valor válido...",
+                format="%.0f",
+                step=1000.00,
+            )
+            valor_formateado = locale.format_string("%.0f", valor, grouping=True)
+            col01, col02 = st.columns([1, 1])
             with col01:
-                st.write(f'Guia del valor: ${valor_formateado}')
-
+                st.write(f"Guia del valor: ${valor_formateado}")
         st.divider()
-        
-        if st.button("Enviar Formulario", use_container_width=True):
-            inputs = {año, mes, concepto, especificacion, ciudad}
+        inputs = {año, mes, concepto, especificacion, ciudad}
+        datos = [año, mes, concepto, especificacion, ciudad, valor]
+        if st.button("Confirmar Enviar Formulario", use_container_width=True):
             if "Seleccione una Opción..." in inputs:
                 st.warning("Por favor complete todos los campos obligatorios")
             else:
-                datos=[año, mes, concepto, especificacion]
-                # df = pd.DataFrame(datos, columns=['Año', 'Mes', 'Concepto', 'Especificación', 'ciudad', 'valor'])
-                # st.dataframe(df)
                 with st.spinner("Enviando formulario..."):
-                    progress_bar = st.progress(1)
-                    for porcentaje in range(100):
-                        time.sleep(0.17)  # Simula el proceso
-                        progress_bar.progress(porcentaje + 1)
-                st.toast("Formulario enviado con éxito", icon="✅")
-                st.success('✅ Se envió el Formulario')
-                if st.session_state.usuario_actual == "jorgeeh":
-                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Analítica de Contraloría", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+                    # Crear el hilo que ejecuta la función guardar
+                    hilo_guardar = threading.Thread(
+                        target=ejecutar_guardar,
+                        args=( año, mes, concepto, especificacion, ciudad, valor, st.session_state.usuario_actual),
+                    )
+                    hilo_guardar.start()
+                    barra_carga = st.progress(0)
+                    progreso = 0
+                    while hilo_guardar.is_alive():
+                        progreso = (progreso + 10) % 100
+                        barra_carga.progress(progreso)
+                        time.sleep(0.3)
+                    barra_carga.empty()
+                    st.toast("Formulario enviado con éxito", icon="✅")
+                    st.success("✅ Se envió el Formulario")
 
-                elif st.session_state.usuario_actual == "albertoc":
-                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Control de Operaciones", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+                    st.divider()
 
-                elif st.session_state.usuario_actual == "oscardy":
-                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Administrativa", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+                    # 🧩 --- NUEVO BLOQUE PARA MOSTRAR EL DATAFRAME ---
+                    # 1️⃣ Definimos las columnas con nombres personalizados
+                    columnas = ["Año", "Mes", "Concepto", "Especificación", "Ciudad", "Valor"]
 
-                elif st.session_state.usuario_actual == "doragc":
-                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Riesgos y Cumplimiento", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+                    # 2️⃣ Creamos un DataFrame con los datos recién enviados
+                    #    Esto convierte la lista `datos` (que ya contiene tus valores del formulario)
+                    #    en un DataFrame de pandas con encabezados bonitos.
+                    df_enviado = pd.DataFrame([datos], columns=columnas)
 
-                elif st.session_state.usuario_actual == "zrestrepo":
-                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Impuestos", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
+                    # 3️⃣ Mostramos el DataFrame debajo del botón
+                    st.subheader("📋 Registro enviado:")
+                    st.dataframe(df_enviado, use_container_width=True, hide_index=True)
 
-                elif st.session_state.usuario_actual == "anamr":
-                    insertar_registro_excel(ruta_archivo=RUTA_ARCHIVO, hoja_objetivo="Contabilidad", columnas=[1, 2, 4, 7, 8, 11],datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"], contrasena="54312")
-                
-                else:
-                    print('Error')
-        
+                    # 4️⃣ Guardamos el DataFrame en session_state si quieres conservarlo entre ejecuciones
+                    st.session_state["ultimo_envio"] = df_enviado
 
         if cerrar_sesion:
             st.session_state.autenticado = False
             st.session_state.usuario_actual = ""
             st.rerun()
+
 # ===========================================================================================================================================
+
 
 # Main
 def main():
@@ -172,6 +194,6 @@ def main():
         mostrar_formulario()
     else:
         mostrar_login()
-
+        
 if __name__ == "__main__":
     main()

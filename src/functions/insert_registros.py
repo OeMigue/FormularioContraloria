@@ -25,10 +25,10 @@ def insertar_registro_excel(ruta_archivo, hoja_objetivo, columnas, datos, contra
     app.quit()
 
 # Ejemplo de uso:
-insertar_registro_excel(
-    ruta_archivo=r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\input\Ingreso Datos Informe Gerencia Contraloria - Eficiencias y Volumetria.xlsm",
-    hoja_objetivo="Analítica de Contraloría",
-    columnas=[1, 2, 4, 7, 8, 11],
-    datos=[2050, 'febrero', "Puntos a conciliar", 'No aplica', "No aplica", '5000000'],
-    contrasena="54312"
-)
+# insertar_registro_excel(
+#     ruta_archivo=r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\input\Ingreso Datos Informe Gerencia Contraloria - Eficiencias y Volumetria.xlsm",
+#     hoja_objetivo="Analítica de Contraloría",
+#     columnas=[1, 2, 4, 7, 8, 11],
+#     datos=[2050, 'febrero', "Puntos a conciliar", 'No aplica', "No aplica", '5000000'],
+#     contrasena="54312"
+# )
