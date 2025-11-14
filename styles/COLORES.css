@@ -22,8 +22,8 @@
 /*IMAGEN*/
 #root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-1r1cntt.e6f82ta1 > div > div > div.stElementContainer.element-container.st-emotion-cache-13gev4o.e196pkbe0 > div > div > div.stImage.st-emotion-cache-1dvmtd8.e1mq0gaz0 > div > img{
     height:100vh;
-    padding: 0vh 0vh 0vh 0vh;
-    margin: 0vh 0vh 0vh 2vh;
+    padding: 0vh 0vh 0vh 2vh;
+    margin: 0vh 0vh 0vh 0vh;
 }
 
 /*CONTENEDOR IMG*/
@@ -141,6 +141,7 @@
 }
 
 .st-cc {
+    border-color: none;
     border-bottom-color: #5B69ED;
 }
 
@@ -152,7 +153,7 @@
     border-right-color: #5B69ED;
 }
 
-.st-c9 {
+.st-c9, .st-d3 {
     border-left-color: #5B69ED;
 }
 

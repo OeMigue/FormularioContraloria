@@ -2,6 +2,7 @@ import xlwings as xw
 
 def insertar_registro_excel(ruta_archivo, hoja_objetivo, columnas, datos, contrasena):
     app = xw.App(visible=False)
+    app.api.EnableEvents = False
     wb = app.books.open(ruta_archivo)
     hoja = wb.sheets[hoja_objetivo]
 
@@ -20,6 +21,7 @@ def insertar_registro_excel(ruta_archivo, hoja_objetivo, columnas, datos, contra
         hoja.cells(nueva_fila, col).value = datos[i]
 
     hoja.api.Protect(Password=contrasena)
+    app.api.EnableEvents = True
     wb.save()
     wb.close()
     app.quit()
@@ -29,6 +31,6 @@ def insertar_registro_excel(ruta_archivo, hoja_objetivo, columnas, datos, contra
 #     ruta_archivo=r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\input\Ingreso Datos Informe Gerencia Contraloria - Eficiencias y Volumetria.xlsm",
 #     hoja_objetivo="Analítica de Contraloría",
 #     columnas=[1, 2, 4, 7, 8, 11],
-#     datos=[2050, 'febrero', "Puntos a conciliar", 'No aplica', "No aplica", '5000000'],
+#     datos=[2050, 'febrero', "Puntos a conciliar", 'No aplica', "No aplica", -10],
 #     contrasena="54312"
 # )

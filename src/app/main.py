@@ -44,21 +44,24 @@ def mostrar_login():
                     "Pin:", placeholder="Ej: 1234", type="password"
                 )
                 enviar = st.button("Iniciar Sesión")
-            if enviar:
-                if not usuario or not contraseña:
-                    st.warning("Campos obligatorios")
-                else:
-                    for nombre, datos_bd in CREDENCIALES.items():
-                        if usuario == datos_bd[0] and contraseña == datos_bd[1]:
-                            st.session_state.autenticado = True
-                            st.session_state.usuario_actual = usuario
-                            st.session_state.nombre_usuario = nombre
-                            st.success(
-                                f"Bienvenido {nombre}. Inicio de sesión completo"
-                            )
-                            time.sleep(1)
-                            st.rerun()
-                    st.error("Usuario o contraseña incorrectos")
+                if enviar:
+                    if not usuario or not contraseña:
+                        st.divider()
+                        st.warning("Campos obligatorios")
+                    else:
+                        for nombre, datos_bd in CREDENCIALES.items():
+                            if usuario == datos_bd[0] and contraseña == datos_bd[1]:
+                                st.session_state.autenticado = True
+                                st.session_state.usuario_actual = usuario
+                                st.session_state.nombre_usuario = nombre
+                                st.divider()
+                                st.success(
+                                    f"Bienvenido {nombre}. Inicio de sesión completo"
+                                )
+                                time.sleep(1)
+                                st.rerun()
+                        st.divider()
+                        st.error("Usuario o contraseña incorrectos")
 
 # Función del formulario
 def mostrar_formulario():
@@ -67,7 +70,8 @@ def mostrar_formulario():
     )
     # Configuración de la página
     st.set_page_config(
-        page_title="GCO | Formulario",
+        page_title="GCO | Contraloría" \
+        "",
         page_icon=RUTA_ICON,
         layout="wide",
         initial_sidebar_state="expanded",
@@ -83,7 +87,7 @@ def mostrar_formulario():
                 + "_" * 10
             )
         with div2:
-            cerrar_sesion = st.button("Cerrar Sesión", use_container_width=True)
+            cerrar_sesion = st.button("Cerrar Sesión", width='stretch')
     st.markdown(
         f"""
             <div class="h2-form" style='text-align: center; border-radius: 30px;'>
@@ -92,6 +96,9 @@ def mostrar_formulario():
         """,
         unsafe_allow_html=True,
     )
+    # container_df = st.container()
+    # with container_df:
+
     st.divider()
     contenedor_form = st.container()
     with contenedor_form:
@@ -126,7 +133,7 @@ def mostrar_formulario():
                 placeholder="Seleccionar una opción...",
             )
             valor = st.number_input(
-                label="Valor:",
+                label=f"Valor:",
                 placeholder="Escribe un valor válido...",
                 format="%.0f",
                 step=1000.00,
@@ -134,13 +141,19 @@ def mostrar_formulario():
             valor_formateado = locale.format_string("%.0f", valor, grouping=True)
             col01, col02 = st.columns([1, 1])
             with col01:
-                st.write(f"Guia del valor: ${valor_formateado}")
+                st.caption(f"Guia del valor: ${valor_formateado}")
+        
+        container_alertas = st.container()
+        with container_alertas:
+            col_alertas1, col_alertas2, col_alertas3 = st.columns([1,8,1])
+
         st.divider()
         inputs = {año, mes, concepto, especificacion, ciudad}
         datos = [año, mes, concepto, especificacion, ciudad, valor]
-        if st.button("Confirmar Enviar Formulario", use_container_width=True):
+        if st.button("Confirmar Enviar Formulario", width='stretch'):
             if "Seleccione una Opción..." in inputs:
-                st.warning("Por favor complete todos los campos obligatorios")
+                with col_alertas2:
+                    st.warning("Por favor complete todos los campos obligatorios")
             else:
                 with st.spinner("Enviando formulario..."):
                     # Crear el hilo que ejecuta la función guardar
@@ -172,7 +185,7 @@ def mostrar_formulario():
 
                     # 3️⃣ Mostramos el DataFrame debajo del botón
                     st.subheader("📋 Registro enviado:")
-                    st.dataframe(df_enviado, use_container_width=True, hide_index=True)
+                    st.dataframe(df_enviado, width='stretch', hide_index=True)
 
                     # 4️⃣ Guardamos el DataFrame en session_state si quieres conservarlo entre ejecuciones
                     st.session_state["ultimo_envio"] = df_enviado

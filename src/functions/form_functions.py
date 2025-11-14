@@ -9,7 +9,7 @@ import threading
 locale.setlocale(locale.LC_ALL, '')  # Usa configuración local del sistema
 
 RUTA_CSS = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\styles\COLORES.css"
-RUTA_IMAGE = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\Streamlit\images\GContraloria.jpeg"
+RUTA_IMAGE = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\images\GContraloria.png"
 RUTA_ICON = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\images\gco_ico.svg"
 RUTA_ARCHIVO = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\input\Ingreso Datos Informe Gerencia Contraloria - Eficiencias y Volumetria.xlsm"
 
@@ -91,6 +91,7 @@ def parametros(area):
 def ejecutar_guardar(año, mes, concepto, especificacion, ciudad, valor, usuario_actual):
     from insert_registros import insertar_registro_excel
 
+
     # Elegimos la hoja según el usuario (como tú ya lo hacías en main)
     if usuario_actual == "jorgeeh":
         hoja = "Analítica de Contraloría"
@@ -112,7 +113,7 @@ def ejecutar_guardar(año, mes, concepto, especificacion, ciudad, valor, usuario
         ruta_archivo=RUTA_ARCHIVO,
         hoja_objetivo=hoja,
         columnas=[1, 2, 4, 7, 8, 11],
-        datos=[año, mes, concepto, especificacion, ciudad, f"{valor:.0f}"],
+        datos=[año, mes, concepto, especificacion, ciudad, valor],
         contrasena="54312"
     )
 
