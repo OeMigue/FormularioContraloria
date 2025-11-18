@@ -1,8 +1,6 @@
 import sys
 
-sys.path.append(
-    r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\src\functions"
-)
+sys.path.append(r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\src\functions")
 
 from form_functions import *
 from insert_registros import *
