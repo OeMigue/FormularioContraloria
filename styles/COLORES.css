@@ -171,4 +171,7 @@
     background-color: transparent;
 }
 
-
+#root > div:nth-child(2) > div > div > div:nth-child(2) > div > div > div{
+    width: 200px;
+    transform: translate(0vh, 20vh);
+}

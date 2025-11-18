@@ -12,6 +12,7 @@ RUTA_CSS = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambie
 RUTA_IMAGE = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\images\GContraloria.png"
 RUTA_ICON = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\images\gco_ico.svg"
 RUTA_ARCHIVO = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\input\Ingreso Datos Informe Gerencia Contraloria - Eficiencias y Volumetria.xlsm"
+RUTA_ICON_CERRAR_SESION = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\images\CerrarSesion.png"
 
 CREDENCIALES = {
     "Miguel Cardona": ["mcardona", "777"],
@@ -62,6 +63,9 @@ def aplicar_css():
         unsafe_allow_html=True,
     )
 
+
+
+
 def parametros(area):
     
     df = pd.read_excel(
@@ -74,25 +78,25 @@ def parametros(area):
     lista_ciudades = df.iloc[:,16].dropna().drop_duplicates().tolist()
 
     if area == "Analítica de Contraloría" or area == "Admin":
-        lista_concepto_anterior = df.iloc[:,22].dropna().drop_duplicates().tolist()
+        lista_concepto_nuevo = df.iloc[:,22].dropna().drop_duplicates().tolist()
     elif area == "Control de Operaciones":
-        lista_concepto_anterior = df.iloc[:,38].dropna().drop_duplicates().tolist()
+        lista_concepto_nuevo = df.iloc[:,38].dropna().drop_duplicates().tolist()
     elif area == "Administrativa":
-        lista_concepto_anterior = df.iloc[:,10].dropna().drop_duplicates().tolist()
+        lista_concepto_nuevo = df.iloc[:,10].dropna().drop_duplicates().tolist()
     elif area == "Riesgos y Cumplimiento":
-        lista_concepto_anterior = df.iloc[:,50].dropna().drop_duplicates().tolist()
+        lista_concepto_nuevo = df.iloc[:,50].dropna().drop_duplicates().tolist()
     elif area == "Impuestos":
-        lista_concepto_anterior = df.iloc[:,46].dropna().drop_duplicates().tolist()
+        lista_concepto_nuevo = df.iloc[:,46].dropna().drop_duplicates().tolist()
     elif area == "Contabilidad":
-        lista_concepto_anterior = df.iloc[:,30].dropna().drop_duplicates().tolist()
+        lista_concepto_nuevo = df.iloc[:,30].dropna().drop_duplicates().tolist()
 
-    return lista_especificaciones,lista_ciudades,lista_concepto_anterior
+    return lista_especificaciones, lista_ciudades, lista_concepto_nuevo
 
 def ejecutar_guardar(año, mes, concepto, especificacion, ciudad, valor, usuario_actual):
+    """Guarda un único registro en Excel (función legacy)"""
     from insert_registros import insertar_registro_excel
 
-
-    # Elegimos la hoja según el usuario (como tú ya lo hacías en main)
+    # Elegimos la hoja según el usuario
     if usuario_actual == "jorgeeh":
         hoja = "Analítica de Contraloría"
     elif usuario_actual == "albertoc":
@@ -114,6 +118,35 @@ def ejecutar_guardar(año, mes, concepto, especificacion, ciudad, valor, usuario
         hoja_objetivo=hoja,
         columnas=[1, 2, 4, 7, 8, 11],
         datos=[año, mes, concepto, especificacion, ciudad, valor],
+        contrasena="54312"
+    )
+
+def ejecutar_guardar_multiples(registros, usuario_actual):
+    """Guarda múltiples registros en Excel de una sola vez"""
+    from insert_registros import insertar_multiples_registros
+
+    # Elegimos la hoja según el usuario
+    if usuario_actual == "jorgeeh":
+        hoja = "Analítica de Contraloría"
+    elif usuario_actual == "albertoc":
+        hoja = "Control de Operaciones"
+    elif usuario_actual == "oscardy":
+        hoja = "Administrativa"
+    elif usuario_actual == "doragc":
+        hoja = "Riesgos y Cumplimiento"
+    elif usuario_actual == "zrestrepo":
+        hoja = "Impuestos"
+    elif usuario_actual == "anamr":
+        hoja = "Contabilidad"
+    else:
+        hoja = "Admin"
+
+    # Guardamos todos los datos en el archivo Excel
+    insertar_multiples_registros(
+        ruta_archivo=RUTA_ARCHIVO,
+        hoja_objetivo=hoja,
+        columnas=[1, 2, 4, 7, 8, 11],
+        lista_datos=registros,
         contrasena="54312"
     )
 
