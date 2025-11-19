@@ -31,7 +31,7 @@ def mostrar_login():
         st.markdown(
             """
                 <div class="h2" style='text-align: center; border-radius: 30px;'>
-                    <h2>Iniciar Sesión</h2>
+                    <h2>Formulario Informe de Gerencia</h2>
                 </div>
             """,
             unsafe_allow_html=True,
@@ -66,7 +66,7 @@ def mostrar_login():
                                 ventana_login()
                         st.divider()
                         st.error("Usuario o contraseña incorrectos")
-
+                        
 # Función del formulario
 def mostrar_formulario():
     lista_especificaciones, lista_ciudades, lista_concepto_nuevo = parametros(
@@ -176,7 +176,7 @@ def mostrar_formulario():
         
         with col_btn2:
             if st.button("🗑️ Limpiar Tabla", width='stretch'):
-                @st.dialog('¿Seguro(a)?')
+                @st.dialog('¿Está seguro(a) de limpiar la tabla?')
                 def ventana_limpiar_papelera():
                     if st.button('Limpiar Tabla'):
                         st.session_state.registros_tabla = []
@@ -230,17 +230,20 @@ def mostrar_formulario():
             with col_tabla1:
                 st.dataframe(df_registros, width='stretch', hide_index=True)
             
+
             with col_tabla2:
-                st.caption('...................................................')
+                st.caption('Eliminar')
                 for idx in range(len(st.session_state.registros_tabla)):
-                    if st.button(f"❌ Fila {idx + 1}", width='stretch', key=f"delete_{idx}"):
+                    eliminar = st.button(f"❌ Fila {idx + 1}", width='stretch', key=f"delete_{idx}")
+                    if eliminar:
+                        eliminar = None
                         st.session_state.registros_tabla.pop(idx)
                         st.rerun()
 
         if cerrar_sesion:
-            @st.dialog('¿Seguro(a)?')
+            @st.dialog('¿Está seeguro(a) de cerrar sesión?')
             def ventana_cerrar_sesion():
-                if st.button('Cerrar Sesión', icon=":material/logout:"):
+                if st.button('Confirmar Cerrar Sesión', icon=":material/logout:"):
                     st.session_state.autenticado = False
                     st.session_state.usuario_actual = ""
                     st.session_state.registros_tabla = []
@@ -258,6 +261,10 @@ def main():
         mostrar_formulario()
     else:
         mostrar_login()
-        
+
 if __name__ == "__main__":
     main()
+
+
+
+    # formulario informe de gerencia en iniciar sesion

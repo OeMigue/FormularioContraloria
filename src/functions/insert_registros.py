@@ -1,4 +1,46 @@
 import xlwings as xw
+import gc
+import pythoncom
+
+def cerrar_instancia_xlwings(app):
+    """
+    Cierra únicamente la instancia de Excel creada por xlwings,
+    sin cerrar otras instancias abiertas por el usuario,
+    limpiando COM y memoria.
+    """
+
+    if app is None:
+        return
+
+    try:
+        # Cierra todos los libros abiertos en esa instancia
+        for wb in app.books:
+            try:
+                wb.close()
+            except:
+                pass
+
+        # Cierra solo esta instancia
+        app.quit()
+    except:
+        pass
+
+    # Eliminar referencia
+    try:
+        del app
+    except:
+        pass
+
+    # Limpiar COM y memoria
+    try:
+        pythoncom.CoUninitialize()
+    except:
+        pass
+
+    gc.collect()
+
+    print("Instancia de Excel cerrada correctamente sin afectar otras.")
+
 
 def insertar_registro_excel(ruta_archivo, hoja_objetivo, columnas, datos, contrasena):
     """Inserta un único registro en Excel"""
@@ -25,7 +67,7 @@ def insertar_registro_excel(ruta_archivo, hoja_objetivo, columnas, datos, contra
     app.api.EnableEvents = True
     wb.save()
     wb.close()
-    app.quit()
+    cerrar_instancia_xlwings(app)
 
 def insertar_multiples_registros(ruta_archivo, hoja_objetivo, columnas, lista_datos, contrasena):
     """Inserta múltiples registros en Excel de una sola vez"""
@@ -54,25 +96,4 @@ def insertar_multiples_registros(ruta_archivo, hoja_objetivo, columnas, lista_da
     app.api.EnableEvents = True
     wb.save()
     wb.close()
-    app.quit()
-
-# Ejemplo de uso único:
-# insertar_registro_excel(
-#     ruta_archivo=r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\input\Ingreso Datos Informe Gerencia Contraloria - Eficiencias y Volumetria.xlsm",
-#     hoja_objetivo="Analítica de Contraloría",
-#     columnas=[1, 2, 4, 7, 8, 11],
-#     datos=[2050, 'febrero', "Puntos a conciliar", 'No aplica', "No aplica", -10],
-#     contrasena="54312"
-# )
-
-# Ejemplo de uso múltiple:
-# insertar_multiples_registros(
-#     ruta_archivo=r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiaciones Ambiente Pruebas\Carpeta Miguel Cardona\FORMULARIOS\input\Ingreso Datos Informe Gerencia Contraloria - Eficiencias y Volumetria.xlsm",
-#     hoja_objetivo="Analítica de Contraloría",
-#     columnas=[1, 2, 4, 7, 8, 11],
-#     lista_datos=[
-#         [2050, 'febrero', "Puntos a conciliar", 'No aplica', "No aplica", -10],
-#         [2050, 'marzo', "Puntos a conciliar", 'No aplica', "No aplica", 20],
-#     ],
-#     contrasena="54312"
-# )
+    cerrar_instancia_xlwings(app)
