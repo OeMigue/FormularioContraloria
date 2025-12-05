@@ -19,6 +19,15 @@ def aplicar_css():
         unsafe_allow_html=True,
     )
 
+def limpiar_campos_formulario():
+    """Limpia todos los campos del formulario a su estado inicial"""
+    st.session_state.año_input = None
+    st.session_state.mes_input = None
+    st.session_state.concepto_input = None
+    st.session_state.especificacion_input = None
+    st.session_state.ciudad_input = None
+    st.session_state.valor_input = 0
+
 def mostrar_login():
     # Configuración de la página
     st.set_page_config(
@@ -73,6 +82,16 @@ def mostrar_login():
                         
 # Función del formulario
 def mostrar_formulario():
+    # Limpiar campos si se indica en session_state
+    if st.session_state.get("limpiar_campos", False):
+        st.session_state.año_input = None
+        st.session_state.mes_input = None
+        st.session_state.concepto_input = None
+        st.session_state.especificacion_input = None
+        st.session_state.ciudad_input = None
+        st.session_state.valor_input = 0
+        st.session_state.limpiar_campos = False
+    
     lista_especificaciones, lista_ciudades, lista_concepto_nuevo = parametros(
         AREAS.get(st.session_state.usuario_actual)
     )
@@ -104,7 +123,7 @@ def mostrar_formulario():
     )
 
     st.divider()
-    st.caption('💡Todos los registros añadidos se pueden visualizar al final de la página.')
+    st.caption('💡Todos los registros añadidos se puede visualizar al final de la página')
     contenedor_form = st.container()
     with contenedor_form:
         col1, col2 = st.columns(2)
@@ -149,9 +168,8 @@ def mostrar_formulario():
             )
             valor = st.number_input(
                 label=f"Valor:",
-                placeholder="Escriba un valor válido...",
-                format="%.0f",
-                step=1.00,
+                format="%d",
+                step=1,
                 key="valor_input",
                 icon = ":material/payments:"
             )
@@ -173,8 +191,7 @@ def mostrar_formulario():
         datos = [año, mes, concepto, especificacion, ciudad, valor]
         
         with col_btn1:
-            btn_añadir_registros=st.button("Añadir registro a la tabla", use_container_width=True, icon = ":material/note_add:")
-            if btn_añadir_registros:
+            if st.button("Añadir Registro a la Tabla", use_container_width=True, icon = ":material/note_add:"):
                 if None in inputs:
                     with col_alertas2:
                         st.warning("Por favor complete todos los campos obligatorios")
@@ -182,21 +199,23 @@ def mostrar_formulario():
                     st.session_state.registros_tabla.append(datos.copy())
                     with col_alertas2:
                         st.success("✅ Registro añadido a la tabla")
+                    st.session_state.limpiar_campos = True
                     st.rerun()
         
         with col_btn2:
             if st.button("Limpiar Tabla", use_container_width=True, icon=":material/mop:"):
                 if st.session_state.registros_tabla:
 
-                    @st.dialog('¿Seguro(a) de limpiar la tabla?')
+                    @st.dialog('¿Está seguro(a) de limpiar la tabla?')
                     def ventana_limpiar_papelera():
                         if st.button('Limpiar Tabla'):
                             st.session_state.registros_tabla = []
+                            st.session_state.limpiar_campos = True
                             st.rerun()
                     ventana_limpiar_papelera()
                 else:
                     with col_alertas2:
-                        st.warning("Todavía no hay registros")
+                        st.warning("Todavía no hay tegistros")
         
         with col_btn3:
             registros_pendientes = len(st.session_state.registros_tabla)
@@ -225,6 +244,7 @@ def mostrar_formulario():
                                         with col_alertas2:
                                             st.success(f"✅ Se enviaron {registros_pendientes} registro(s)")
                                         st.session_state.registros_tabla = []
+                                        st.session_state.limpiar_campos = True
                                         time.sleep(1)
                                         st.rerun()
                             ventana_enviar_todo()
@@ -263,7 +283,7 @@ def mostrar_formulario():
         if cerrar_sesion:
             @st.dialog('¿Está seguro(a) de cerrar sesión?')
             def ventana_cerrar_sesion():
-                if st.button('Confirmar cerrar sesión', icon=":material/logout:"):
+                if st.button('Confirmar Cerrar Sesión', icon=":material/logout:"):
                     st.session_state.autenticado = False
                     st.session_state.usuario_actual = ""
                     st.session_state.registros_tabla = []
@@ -283,13 +303,13 @@ def main():
         st.session_state.usuario_actual = ""
     if "registros_tabla" not in st.session_state:
         st.session_state.registros_tabla = []
-    
+    if "limpiar_campos" not in st.session_state:
+        st.session_state.limpiar_campos = False
 
     st.sidebar.image(RUTA_IMAGE)
 
     if st.session_state.autenticado:
         mostrar_formulario()
-        
     else:
         mostrar_login()
     st.divider()
