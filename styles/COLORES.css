@@ -26,6 +26,11 @@
     margin: 0vh 0vh 0vh 0vh;
 }
 
+/*IMG BIENVENIDO*/
+#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-1w723zb.e4man114 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div > div > div:nth-child(1) > div > div > div > div.stColumn.st-emotion-cache-f3jy6b.e196pkbe1 > div > div > div > div > div.stImage.st-emotion-cache-qyyadu.e1mq0gaz0 > div > img{
+    width: 50px;
+}
+
 /*CONTENEDOR IMG*/
 #root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-1r1cntt.e6f82ta1 {
     padding: 0%;

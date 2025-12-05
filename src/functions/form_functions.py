@@ -18,9 +18,9 @@ RUTA_BIENVENIDA_GCO = r"O:\Gerencia Contraloria\Analitica Contraloria\Automatiac
 CREDENCIALES = {
     "Miguel Cardona": ["mcardona", "777"],
     "Jorge Herrera": ["jorgeeh", "1212"],
-    "Alberto Cortes": ["albertoc", "2323"],
+    "Alberto Cortés": ["albertoc", "2323"],
     "Oscar Yepes": ["oscardy", "3434"],
-    "Dora Gomez": ["doragc", "4545"],
+    "Dora Gómez": ["doragc", "4545"],
     "Zaneida Restrepo": ["zrestrepo", "5656"],
     "Ana Romero": ["anamr", "6767"],
 }

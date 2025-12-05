@@ -104,7 +104,7 @@ def mostrar_formulario():
     )
 
     st.divider()
-    st.caption('💡Todos los registros añadidos se puede visualizar al final de la página')
+    st.caption('💡Todos los registros añadidos se pueden visualizar al final de la página.')
     contenedor_form = st.container()
     with contenedor_form:
         col1, col2 = st.columns(2)
@@ -173,7 +173,8 @@ def mostrar_formulario():
         datos = [año, mes, concepto, especificacion, ciudad, valor]
         
         with col_btn1:
-            if st.button("Añadir Registro a la Tabla", use_container_width=True, icon = ":material/note_add:"):
+            btn_añadir_registros=st.button("Añadir registro a la tabla", use_container_width=True, icon = ":material/note_add:")
+            if btn_añadir_registros:
                 if None in inputs:
                     with col_alertas2:
                         st.warning("Por favor complete todos los campos obligatorios")
@@ -187,7 +188,7 @@ def mostrar_formulario():
             if st.button("Limpiar Tabla", use_container_width=True, icon=":material/mop:"):
                 if st.session_state.registros_tabla:
 
-                    @st.dialog('¿Está seguro(a) de limpiar la tabla?')
+                    @st.dialog('¿Seguro(a) de limpiar la tabla?')
                     def ventana_limpiar_papelera():
                         if st.button('Limpiar Tabla'):
                             st.session_state.registros_tabla = []
@@ -195,7 +196,7 @@ def mostrar_formulario():
                     ventana_limpiar_papelera()
                 else:
                     with col_alertas2:
-                        st.warning("Todavía no hay tegistros")
+                        st.warning("Todavía no hay registros")
         
         with col_btn3:
             registros_pendientes = len(st.session_state.registros_tabla)
@@ -243,14 +244,6 @@ def mostrar_formulario():
             
             with col_tabla1:
                 st.dataframe(df_registros, height=len(st.session_state.registros_tabla) * 35 + 37, hide_index=True)
-            
-            # def eliminar_registro():
-            #     # Revisar todos los checkboxes y eliminar los que están seleccionados
-            #     for idx in range(len(st.session_state.registros_tabla) - 1, -1, -1):
-            #         checkbox_key = f"checkbox_{idx}"
-            #         if checkbox_key in st.session_state and st.session_state[checkbox_key]:
-            #             st.session_state.registros_tabla.pop(idx)
-            #             st.session_state[checkbox_key] = False
 
             def eliminar_registro():
                 # Revisar todos los checkboxes y eliminar los que están seleccionados
@@ -270,7 +263,7 @@ def mostrar_formulario():
         if cerrar_sesion:
             @st.dialog('¿Está seguro(a) de cerrar sesión?')
             def ventana_cerrar_sesion():
-                if st.button('Confirmar Cerrar Sesión', icon=":material/logout:"):
+                if st.button('Confirmar cerrar sesión', icon=":material/logout:"):
                     st.session_state.autenticado = False
                     st.session_state.usuario_actual = ""
                     st.session_state.registros_tabla = []
@@ -290,11 +283,13 @@ def main():
         st.session_state.usuario_actual = ""
     if "registros_tabla" not in st.session_state:
         st.session_state.registros_tabla = []
+    
 
     st.sidebar.image(RUTA_IMAGE)
 
     if st.session_state.autenticado:
         mostrar_formulario()
+        
     else:
         mostrar_login()
     st.divider()
