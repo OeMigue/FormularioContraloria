@@ -73,7 +73,7 @@ def mostrar_login():
                             st.session_state.nombre_usuario = nombre
                             @st.dialog('GCO')
                             def ventana_login():
-                                st.success(f"Bienvenido {nombre}. Inicio de sesión completo", icon = ":material/how_to_reg:")
+                                st.success(f"Bienvenido(a) {nombre}. Inicio de sesión completo", icon = ":material/how_to_reg:")
                                 time.sleep(0.02)
                                 st.rerun()
                             ventana_login()
@@ -168,15 +168,20 @@ def mostrar_formulario():
             )
             valor = st.number_input(
                 label=f"Valor:",
-                format="%d",
-                step=1,
+                format="%f",
+                step=1.0,
                 key="valor_input",
                 icon = ":material/payments:"
             )
             valor_formateado = locale.format_string("%.0f", valor, grouping=True)
+            valor_porcentaje = f"Guía del procentaje. {valor}%"
             col01, col02 = st.columns([1, 1])
             with col01:
-                st.caption(f"Guía del valor: ${valor_formateado}")
+                if concepto == "Cumplimiento ANS de trámite de facturas":
+                    st.caption(valor_porcentaje)
+                else:    
+                    st.caption(f"Guía del valor: ${valor_formateado}")
+
         
         container_alertas = st.container()
         with container_alertas:
