@@ -1,0 +1,4 @@
+barra herramientas streamlit
+
+espaciado de la tabla
+

@@ -91,8 +91,8 @@ def mostrar_formulario():
         st.session_state.ciudad_input = None
         st.session_state.valor_input = 0
         st.session_state.limpiar_campos = False
-    
-    lista_especificaciones, lista_ciudades, lista_concepto_nuevo = parametros(
+
+    lista_especificaciones, lista_ciudades, lista_concepto_nuevo, diccionario_unidades = parametros(
         AREAS.get(st.session_state.usuario_actual)
     )
     lista_especificaciones_ordenadas = sorted(lista_especificaciones, key=lambda x: x != "No aplica")
@@ -166,22 +166,68 @@ def mostrar_formulario():
                 placeholder="Seleccionar una opción...",
                 key="especificacion_input"
             )
-            valor = st.number_input(
-                label=f"Valor:",
-                format="%f",
-                step=1.0,
-                key="valor_input",
-                icon = ":material/payments:"
-            )
-            valor_formateado = locale.format_string("%.0f", valor, grouping=True)
-            valor_porcentaje = f"Guía del procentaje. {valor}%"
-            col01, col02 = st.columns([1, 1])
-            with col01:
-                if concepto == "Cumplimiento ANS de trámite de facturas":
-                    st.caption(valor_porcentaje)
-                else:    
-                    st.caption(f"Guía del valor: ${valor_formateado}")
 
+            # valor = st.number_input(
+            #     label=f"Valor:",
+            #     format="%f",
+            #     step=1.0,
+            #     key="valor_input",
+            #     icon = ":material/payments:"
+            # )
+
+            tipo_valor = diccionario_unidades.get(concepto, "")
+            valor = None
+
+            if tipo_valor == "Cantidad":
+
+                valor = st.number_input(
+                    label=f"Unidades:",
+                    format="%d",
+                    step=1,
+                    key="valor_input2",
+                    icon = ":material/dataset:"
+                )
+
+                valor_formateado = locale.format_string("%.0f", valor, grouping=True)
+                st.caption(f"Guia: {valor_formateado} Unidades")
+
+            elif tipo_valor == "Pesos":
+                valor = st.number_input(
+                    label=f"Valor:",
+                    format="%d",
+                    step=1,
+                    key="valor_input2",
+                    icon = ":material/payments:"
+                )
+
+                valor_formateado = locale.format_string("%.0f", valor, grouping=True)
+                st.caption(f"Guia: ${valor_formateado}")
+
+            elif tipo_valor == "Porcentaje":
+                valor = st.number_input(
+                    label=f"Porcentaje:",
+                    format="%f",
+                    step=1.0,
+                    key="valor_input2",
+                    icon = ":material/percent:"
+                )
+
+                valor_formateado = locale.format_string("%.0f", valor)
+                st.caption(f"Guia: {valor}%")
+
+            elif tipo_valor == "Tonelada":
+                valor = st.number_input(
+                    label=f"Tonelada:",
+                    format="%f",
+                    step=1.0,
+                    key="valor_input2",
+                    icon = ":material/weight:"
+                )
+
+                valor_formateado = locale.format_string("%.0f", valor,grouping=True)
+                st.caption(f"Guia: {valor_formateado} Tonelada(s)")
+            else:
+                st.caption("💡Por favor seleccione un concepto")
         
         container_alertas = st.container()
         with container_alertas:
@@ -204,7 +250,7 @@ def mostrar_formulario():
                     st.session_state.registros_tabla.append(datos.copy())
                     with col_alertas2:
                         st.success("✅ Registro añadido a la tabla")
-                    st.session_state.limpiar_campos = True
+                    # st.session_state.limpiar_campos = True
                     st.rerun()
         
         with col_btn2:
@@ -220,7 +266,7 @@ def mostrar_formulario():
                     ventana_limpiar_papelera()
                 else:
                     with col_alertas2:
-                        st.warning("Todavía no hay tegistros")
+                        st.warning("Todavía no hay registros")
         
         with col_btn3:
             registros_pendientes = len(st.session_state.registros_tabla)

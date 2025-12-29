@@ -20,7 +20,8 @@
 }
 
 /*IMAGEN*/
-#root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-1r1cntt.e6f82ta1 > div > div > div.stElementContainer.element-container.st-emotion-cache-13gev4o.e196pkbe0 > div > div > div.stImage.st-emotion-cache-1dvmtd8.e1mq0gaz0 > div > img{
+/* #root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-1r1cntt.e6f82ta1 > div > div > div.stElementContainer.element-container.st-emotion-cache-13gev4o.e196pkbe0 > div > div > div.stImage.st-emotion-cache-1dvmtd8.e1mq0gaz0 > div > img */
+[data-testid="stSidebar"] img {
     height:100vh;
     padding: 0vh 0vh 0vh 2vh;
     margin: 0vh 0vh 0vh 0vh;
@@ -37,20 +38,21 @@
     margin: 0%;
 }
 
-/*BTN MAX IMG*/
-#root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-1r1cntt.e6f82ta1 > div > div > div.stElementContainer.element-container.st-emotion-cache-13gev4o.e196pkbe0 > div > div > div.stElementToolbar.st-emotion-cache-iun7dp.ekeylwq0, #root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-10p9htt.e6f82ta4{
+/*BTN ZOOM IMG GCO*/
+/* #root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-1r1cntt.e6f82ta1 > div > div > div.stElementContainer.element-container.st-emotion-cache-13gev4o.e196pkbe0 > div > div > div.stElementToolbar.st-emotion-cache-iun7dp.ekeylwq0, #root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-155jwzh.e6f82ta2 > div.st-emotion-cache-10p9htt.e6f82ta4 */
+[data-testid="stElementToolbar"], [data-testid="stSidebarHeader"]{
     display: none;
 }
 
-/*BTN ZOOM IMG MARCAS LOGIN*/
-#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-1w723zb.e4man114 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div > div > div:nth-child(1) > div > div > div > div.stColumn.st-emotion-cache-f3jy6b.e196pkbe1 > div > div > div > div > div.stElementToolbar.st-emotion-cache-iun7dp.ekeylwq0{
+/*BTN ZOOM IMG BIENVENIDA LOGIN*/
+/* #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-1w723zb.e4man114 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div > div > div:nth-child(1) > div > div > div > div.stColumn.st-emotion-cache-f3jy6b.e196pkbe1 > div > div > div > div > div.stElementToolbar.st-emotion-cache-iun7dp.ekeylwq0{
     display: none;
-}
+} */
 
 /*BTN ZOOM IMG MARCAS FORM*/
-#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.e4man114 > div > div.stElementContainer.element-container.st-emotion-cache-13gev4o.e196pkbe0 > div > div > div.stElementToolbar.st-emotion-cache-iun7dp.ekeylwq0{
+/* #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.e4man114 > div > div.stElementContainer.element-container.st-emotion-cache-13gev4o.e196pkbe0 > div > div > div.stElementToolbar.st-emotion-cache-iun7dp.ekeylwq0{
     display: none;
-}
+} */
 
 /*SIDEBAR*/
 #root > div:nth-child(1) > div.withScreencast > div > div > section{
@@ -58,9 +60,9 @@
     width: 39vh !important;
 }
 /*CONTENEDOR FLECHA SIDEBAR*/
-#root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-jik3eh.e6f82ta2 > div.st-emotion-cache-10p9htt.e6f82ta4{
+/* #root > div:nth-child(1) > div.withScreencast > div > div > section > div.st-emotion-cache-jik3eh.e6f82ta2 > div.st-emotion-cache-10p9htt.e6f82ta4{
     display: none;
-}
+} */
 
 /*CONTENEDOR INPUTS LOGIN*/
 #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-1w723zb.e4man114 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div.st-emotion-cache-18kf3ut.e196pkbe3 > div > div > div > div.stColumn.st-emotion-cache-1jnfx01.e196pkbe1 > div{
@@ -76,7 +78,7 @@
 }
 
 /*DIV TITULO LOGIN*/
-[class="st-emotion-cache-ua1rfn et2rgd22"]{
+[data-testid="stHeadingWithActionElements"]{
     background-color: #586AE8;
     color: #ffffff;
     border-radius: 20px;
@@ -85,19 +87,22 @@
 }
 
 /*MENÚ CONFIG*/
-#root > div:nth-child(1) > div.withScreencast > div > div > div > header > div > div > div.st-emotion-cache-scp8yw.e3g0k5y6{
+/* #root > div:nth-child(1) > div.withScreencast > div > div > div > header > div > div > div.st-emotion-cache-scp8yw.e3g0k5y6 */
+[data-testid="stToolbar"]{
     display: none;
 }
 
 /*MENÚ CONFIG PAG.*/
-#root > div:nth-child(1) > div.withScreencast > div > div > div > header{
-    background-color: transparent;
+/* #root > div:nth-child(1) > div.withScreencast > div > div > div > header */
+[data-testid="stHeader"]{
+    /* background-color: transparent;
     position: absolute;
-    z-index: 1;
+    z-index: 1; */
+    display: none;
 }
 
 /* BTNS ANTES HOVER */
-.stButton button {
+[data-testid="stBaseButton-secondary"]{
     background-color: white;
     color: #586AE8;
     border-radius: 10px;
@@ -109,7 +114,7 @@
 }
 
 /*BTN CERRAR SESIÓN*/
-#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.e4man114 > div > div:nth-child(2) > div > div > div > div.stColumn.st-emotion-cache-kt9vas.e196pkbe1 > div > div > div > button{    
+#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.e4man114 > div > div:nth-child(2) > div > div > div > div.stColumn.st-emotion-cache-kt9vas.e196pkbe1 > div > div > div > button{
     position: absolute;
     z-index: 2;
     top: 3px;
@@ -192,7 +197,8 @@
 }
 
 /*CONTAINER ELIMINAR FILA*/
-#root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.e4man114 > div > div:nth-child(6) > div > div:nth-child(6) > div > div.stColumn.st-emotion-cache-3bzfpc.e196pkbe1 > div > div > div{
+/* #root > div:nth-child(1) > div.withScreencast > div > div > div > section > div.stMainBlockContainer.block-container.st-emotion-cache-zy6yx3.e4man114 > div > div:nth-child(6) > div > div:nth-child(6) > div > div.stColumn.st-emotion-cache-3bzfpc.e196pkbe1 > div > div > div */
+[data-testid="stVerticalBlock"]{
     padding: 9px 0px 0px 0px;
     gap: 11px;
 }

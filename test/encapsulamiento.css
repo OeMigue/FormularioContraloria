@@ -1,0 +1,17 @@
+.login-form {
+    padding: 2rem;
+    background-color: #1e40af;
+}
+
+.login-form input {
+    border-radius: 8px;
+}
+
+.btn-submit button {
+    background: #2563eb;
+    color: white;
+}
+
+button[aria-label="Ingresar"] {
+    background: #2563eb;
+}

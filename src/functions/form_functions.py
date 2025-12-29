@@ -70,18 +70,29 @@ def parametros(area):
 
     if area == "Analítica de Contraloría" or area == "Admin":
         lista_concepto_nuevo = df.iloc[:,18].dropna().drop_duplicates().tolist()
+        diccionario_unidades = dict(zip(df.iloc[:,18].dropna().drop_duplicates(), df.iloc[:,20].dropna()))
+
     elif area == "Control de Operaciones":
         lista_concepto_nuevo = df.iloc[:,34].dropna().drop_duplicates().tolist()
+        diccionario_unidades = dict(zip(df.iloc[:,34].dropna().drop_duplicates(), df.iloc[:,36].dropna()))
+
     elif area == "Administrativa":
         lista_concepto_nuevo = df.iloc[:,6].dropna().drop_duplicates().tolist()
+        diccionario_unidades = dict(zip(df.iloc[:,6].dropna().drop_duplicates(), df.iloc[:,8].dropna()))
+
     elif area == "Riesgos y Cumplimiento":
         lista_concepto_nuevo = df.iloc[:,50].dropna().drop_duplicates().tolist()
+        diccionario_unidades = dict(zip(df.iloc[:,50].dropna().drop_duplicates(), df.iloc[:,52].dropna()))
+
     elif area == "Impuestos":
         lista_concepto_nuevo = df.iloc[:,42].dropna().drop_duplicates().tolist()
+        diccionario_unidades = dict(zip(df.iloc[:,42].dropna().drop_duplicates(), df.iloc[:,44].dropna()))
+
     elif area == "Contabilidad":
         lista_concepto_nuevo = df.iloc[:,26].dropna().drop_duplicates().tolist()
+        diccionario_unidades = dict(zip(df.iloc[:,26].dropna().drop_duplicates(), df.iloc[:,28].dropna()))
 
-    return lista_especificaciones, lista_ciudades, lista_concepto_nuevo
+    return lista_especificaciones, lista_ciudades, lista_concepto_nuevo, diccionario_unidades
 
 def ejecutar_guardar(año, mes, concepto, especificacion, ciudad, valor, usuario_actual):
     """Guarda un único registro en Excel (función legacy)"""
@@ -142,5 +153,5 @@ def ejecutar_guardar_multiples(registros, usuario_actual):
     )
 
 if __name__ == "__main__":
-    # parametros()
-    print("No es")
+    parametros("Analítica de Contraloría")
+    # print("No es")
